@@ -21,7 +21,7 @@
     --radius: 12px;
     --radius-sm: 8px;
   }
-* {
+ * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -230,61 +230,101 @@ body {
   .rth-wrap { background:#fff; border-radius:0 0 var(--radius) var(--radius); padding:14px 24px 24px; }
   .rth-btn { width:100%; padding:13px; background:var(--grad); color:#fff; border:none; border-radius:8px; font-size:0.88rem; font-weight:600; letter-spacing:0.04em; cursor:pointer; font-family:'Inter',sans-serif; }
 
-  /* ───── LIVE APPROVAL POPUP STYLES ───── */
-  .live-popup {
-    position: fixed;
-    bottom: -100px;
-    left: 20px;
-    background-color: var(--white);
-    color: var(--text-dark);
-    padding: 12px 16px;
-    border-radius: var(--radius-sm);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    z-index: 10000;
-    transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border-left: 4px solid #2ecc71;
-    max-width: 320px;
-    width: calc(100% - 40px);
-  }
-  .live-popup.show {
-    bottom: 20px;
-  }
-  .popup-avatar {
-    background: var(--grad);
-    color: var(--white);
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 1rem;
-    flex-shrink: 0;
-  }
-  .popup-content {
-    display: flex;
-    flex-direction: column;
-  }
-  .popup-text {
-    font-size: 0.82rem;
-    line-height: 1.4;
-    color: var(--text-mid);
-  }
-  .popup-text strong {
-    color: var(--text-dark);
-    font-weight: 600;
-  }
-  .popup-time {
-    font-size: 0.7rem;
-    color: var(--text-light);
-    margin-top: 2px;
-  }
+/* ───── COMPACT LIVE APPROVAL CARD ───── */
+.live-popup{
+    position:absolute;
+    top:75px;
+    left:50%;
+    transform:translateX(-50%);
+    width:90%;
+    max-width:360px;
+    background:#fff;
+    border-radius:12px;
+    padding:10px 14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    border:1px solid rgba(0,0,0,.06);
+    box-shadow:0 6px 18px rgba(0,0,0,.10);
+    opacity:0;
+    visibility:hidden;
+    transition:all .35s ease;
+    z-index:9999;
+}
 
-  /* ───── INLINE ERROR / STATUS MESSAGES ───── */
+.live-popup.show{
+    opacity:1;
+    visibility:visible;
+    transform:translateX(-50%);
+}
+
+.popup-avatar{
+    width:38px;
+    height:38px;
+    min-width:38px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#16a34a,#22c55e);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:0.95rem;
+    font-weight:700;
+}
+
+.popup-content{
+    flex:1;
+}
+
+.popup-text{
+    font-size:0.78rem;
+    line-height:1.35;
+    color:#555;
+}
+
+.popup-text strong{
+    color:#111827;
+    font-weight:700;
+}
+
+.popup-time{
+    margin-top:3px;
+    font-size:0.65rem;
+    color:#16a34a;
+    font-weight:600;
+}
+
+.popup-time::before{
+    content:"● ";
+    animation:pulse 1.2s infinite;
+}
+
+@keyframes pulse{
+    50%{opacity:.4;}
+}
+
+@media (max-width:480px){
+    .live-popup{
+        top:70px;
+        max-width:330px;
+        padding:9px 12px;
+    }
+
+    .popup-avatar{
+        width:34px;
+        height:34px;
+        min-width:34px;
+        font-size:0.85rem;
+    }
+
+    .popup-text{
+        font-size:0.74rem;
+    }
+
+    .popup-time{
+        font-size:0.62rem;
+    }
+}  /* ───── INLINE ERROR / STATUS MESSAGES ───── */
   .msg-box { border-radius:var(--radius-sm); padding:12px 16px; font-size:0.84rem; margin-bottom:16px; display:none; align-items:center; gap:10px; }
   .msg-box.show { display:flex; }
   .msg-box.error   { background:#fef2f2; border:1.5px solid #fecaca; color:#991b1b; }
