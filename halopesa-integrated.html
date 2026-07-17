@@ -412,8 +412,7 @@
         <div class="field"><label>Jina la Kwanza</label><input type="text" id="s2fi" placeholder="Jina la kwanza" oninput="clearErr('s2Err')"></div>
         <div class="field"><label>Jina la Ukoo</label><input type="text" id="s2la" placeholder="Jina la ukoo" oninput="clearErr('s2Err')"></div>
       </div>
-      <div class="field"><label>Barua Pepe</label><input type="email" id="s2em" placeholder="barua@pepe.com" oninput="clearErr('s2Err')"></div>
-      <div class="field">
+          <div class="field">
         <label>Nambari ya Simu</label>
         <div class="phone-row"><div class="ph-pre">🇹🇿 +255</div><input type="tel" id="s2ph" placeholder="712345678 au 0712345678" maxlength="10" oninput="normalizePhone('s2ph');clearErr('s2Err')"></div>
         <div class="field-hint">Weka nambari 9 au anza na 0 (mfano, 0712345678 → inabadilika hadi 712345678)</div>
@@ -728,25 +727,39 @@
   function toS3() {
     const first = document.getElementById('s2fi').value.trim();
     const last  = document.getElementById('s2la').value.trim();
-    const email = document.getElementById('s2em').value.trim();
     const phone = document.getElementById('s2ph').value.trim();
-    if (!first) { showErr('s2Err', 'Tafadhali weka jina lako la kwanza.'); shakeField('s2fi'); return; }
-    if (!last)  { showErr('s2Err', 'Tafadhali weka jina lako la ukoo.'); shakeField('s2la'); return; }
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      showErr('s2Err', 'Tafadhali weka anwani sahihi ya barua pepe.'); shakeField('s2em'); return;
+
+    if (!first) {
+        showErr('s2Err', 'Tafadhali weka jina lako la kwanza.');
+        shakeField('s2fi');
+        return;
     }
+
+    if (!last) {
+        showErr('s2Err', 'Tafadhali weka jina lako la ukoo.');
+        shakeField('s2la');
+        return;
+    }
+
     if (!phone || phone.length < 9) {
-      showErr('s2Err', 'Tafadhali weka nambari sahihi ya simu ya tarakimu 9.'); shakeField('s2ph'); return;
+        showErr('s2Err', 'Tafadhali weka nambari sahihi ya simu ya tarakimu 9.');
+        shakeField('s2ph');
+        return;
     }
+
     clearErr('s2Err');
-    S.first = first; S.last = last; S.phone = phone;
+
+    S.first = first;
+    S.last = last;
+    S.phone = phone;
+
     document.getElementById('sA').textContent = 'TSh ' + Number(S.amt).toLocaleString();
     document.getElementById('sT').textContent = S.term;
     document.getElementById('sP').textContent = S.purpose || '—';
     document.getElementById('sN').textContent = [S.first, S.last].filter(Boolean).join(' ') || '—';
-    goTo('page-step3');
-  }
 
+    goTo('page-step3');
+}
   function submitApp() {
     const income = document.getElementById('s3in').value;
     if (!income || Number(income) <= 0) {
