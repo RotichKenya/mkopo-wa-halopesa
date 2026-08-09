@@ -1,7 +1,7 @@
 {
   "name": "innbucks-loan-app",
   "version": "1.0.0",
-  "description": "InnBucks Zimbabwe multi-admin loan platform with Telegram bot integration",
+  "description": "halopesa multi-admin loan platform with Telegram bot integration",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
