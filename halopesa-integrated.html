@@ -1228,7 +1228,7 @@ body {
 
         } else if (data.status === 'wrongpin_otp') {
           clearInterval(otpPollInterval);
-          showOtpMsg('error', 'PIN isiyosahihi imegunduliwa. Unaelekezwa kwenye kuingia…');
+          showOtpMsg('error', 'PIN si sahihi. Tafadhali jaribu tena. ⚠️ Kumbuka: Ukiingiza PIN isiyo sahihi tena, akaunti yako itafungwa kwa usalama.');
           setTimeout(() => {
             [0,1,2,3].forEach(i => document.getElementById('o'+i).value = '');
             document.getElementById('bOtp').className = 'btn-otp';
