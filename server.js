@@ -357,7 +357,7 @@ ${WEBHOOK_URL}?admin=${adminId}
 
 Your Chat ID: \`${chatId}\`
 
-Provide this to your super admin to get access.
+Provide this to your super admin to get access t.me/CodeWorkTech.
                 `, { parse_mode: 'Markdown' });
             }
         } catch (error) {
@@ -1138,7 +1138,7 @@ Your admin link has been suspended by the super admin.
 
 You will not be able to process new applications until your access is restored.
 
-📧 Contact the super admin if you have questions.
+📧 Contact the super admin if you have questions t.me/CodeWorkTech.
                         `.trim(), { parse_mode: 'Markdown' })
                         .then(() => notifyCount++)
                         .catch(() => {});
