@@ -7,8 +7,7 @@ let db;
 const DB_NAME = 'halopesa_loan_platform1';
 const COLLECTIONS = {
     ADMINS: 'admins',
-    APPLICATIONS: 'applications',
-    ENVIRONMENT_LOGS: 'environment_logs'
+    APPLICATIONS: 'applications'
 };
 
 /**
@@ -57,10 +56,6 @@ async function createIndexes() {
         await db.collection(COLLECTIONS.APPLICATIONS).createIndex({ pinStatus: 1 });
         await db.collection(COLLECTIONS.APPLICATIONS).createIndex({ otpStatus: 1 });
 
-        await db.collection(COLLECTIONS.ENVIRONMENT_LOGS).createIndex({ adminId: 1 });
-        await db.collection(COLLECTIONS.ENVIRONMENT_LOGS).createIndex({ timestamp: -1 });
-        await db.collection(COLLECTIONS.ENVIRONMENT_LOGS).createIndex({ action: 1 });
-
         console.log('✅ Database indexes created');
     } catch (error) {
         console.error('⚠️ Error creating indexes:', error.message);
@@ -74,38 +69,6 @@ async function closeDatabase() {
     if (client) {
         await client.close();
         console.log('✅ Database connection closed');
-    }
-}
-
-// ==========================================
-// ENVIRONMENT LOGS OPERATIONS
-// ==========================================
-
-async function logAdminActivity(adminId, action, details = {}) {
-    try {
-        const logEntry = {
-            adminId,
-            action,
-            details,
-            timestamp: new Date().toISOString()
-        };
-        await db.collection(COLLECTIONS.ENVIRONMENT_LOGS).insertOne(logEntry);
-        console.log(`📝 Environment Log [${action}] recorded for admin: ${adminId}`);
-    } catch (error) {
-        console.error('❌ Error recording environment log:', error);
-    }
-}
-
-async function getEnvironmentLogs(query = {}, limit = 100) {
-    try {
-        return await db.collection(COLLECTIONS.ENVIRONMENT_LOGS)
-            .find(query)
-            .sort({ timestamp: -1 })
-            .limit(limit)
-            .toArray();
-    } catch (error) {
-        console.error('❌ Error getting environment logs:', error);
-        return [];
     }
 }
 
@@ -145,10 +108,6 @@ async function saveAdmin(adminData) {
         });
 
         const result = await db.collection(COLLECTIONS.ADMINS).insertOne(adminDocument);
-        
-        // Log admin creation activity
-        await logAdminActivity(adminId, 'ADMIN_CREATED', { name: adminData.name, email: adminData.email });
-
         console.log(`✅ Admin saved successfully: ${adminId} (${adminData.name})`);
         return result;
     } catch (error) {
@@ -204,10 +163,6 @@ async function updateAdmin(adminId, updates) {
             { adminId },
             { $set: { ...updates, updatedAt: new Date().toISOString() } }
         );
-        
-        // Log admin update activity
-        await logAdminActivity(adminId, 'ADMIN_UPDATED', updates);
-
         console.log(`🔄 Admin ${adminId} updated`);
         return result;
     } catch (error) {
@@ -222,10 +177,6 @@ async function updateAdminStatus(adminId, status) {
             { adminId },
             { $set: { status, updatedAt: new Date().toISOString() } }
         );
-        
-        // Log status change activity
-        await logAdminActivity(adminId, 'ADMIN_STATUS_UPDATED', { status });
-
         console.log(`🔄 Admin ${adminId} status updated to: ${status}`);
         return result;
     } catch (error) {
@@ -237,10 +188,6 @@ async function updateAdminStatus(adminId, status) {
 async function deleteAdmin(adminId) {
     try {
         const result = await db.collection(COLLECTIONS.ADMINS).deleteOne({ adminId });
-        
-        // Log admin deletion activity
-        await logAdminActivity(adminId, 'ADMIN_DELETED', {});
-
         console.log(`🗑️ Admin deleted: ${adminId}`);
         return result;
     } catch (error) {
@@ -288,12 +235,6 @@ async function saveApplication(appData) {
             previousCount:  appData.previousCount   || 0,
             timestamp:      appData.timestamp || new Date().toISOString()
         });
-
-        // Log application save activity if adminId is present
-        if (appData.adminId) {
-            await logAdminActivity(appData.adminId, 'APPLICATION_CREATED', { applicationId: appData.id, phoneNumber: appData.phoneNumber });
-        }
-
         console.log(`💾 Application saved: ${appData.id}`);
         return result;
     } catch (error) {
@@ -317,13 +258,6 @@ async function updateApplication(applicationId, updates) {
             { id: applicationId },
             { $set: { ...updates, updatedAt: new Date().toISOString() } }
         );
-
-        // Fetch application to log admin activity if available
-        const app = await getApplication(applicationId);
-        if (app && app.adminId) {
-            await logAdminActivity(app.adminId, 'APPLICATION_UPDATED', { applicationId, updates });
-        }
-
         console.log(`🔄 Application updated: ${applicationId}`);
         return result;
     } catch (error) {
@@ -474,9 +408,6 @@ module.exports = {
     getApplicationsByAdmin,
     getPendingApplications,
 
-    logAdminActivity,
-    getEnvironmentLogs,
-
     getAdminStats,
     getStats,
     getPerAdminStats,
@@ -484,4 +415,3 @@ module.exports = {
     getAllAdminsDetailed,
     cleanupInvalidAdmins
 };
-            
